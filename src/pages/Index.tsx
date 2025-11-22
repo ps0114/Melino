@@ -1,8 +1,10 @@
+import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
 import { ProductCard } from "@/components/ProductCard";
 import { ValueCard } from "@/components/ValueCard";
 import { ConcernCard } from "@/components/ConcernCard";
 import { Footer } from "@/components/Footer";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Award, Eye, Leaf, Heart, Microscope, Droplet } from "lucide-react";
 
 import foamingFacewash from "@/assets/foaming-facewash.jpg";
@@ -11,6 +13,11 @@ import collagenElixir from "@/assets/collagen-elixir.jpg";
 import moisturizer from "@/assets/moisturizer.jpg";
 
 const Index = () => {
+  const { ref: productsRef, isVisible: productsVisible } = useScrollAnimation();
+  const { ref: valuesRef, isVisible: valuesVisible } = useScrollAnimation();
+  const { ref: bestsellersRef, isVisible: bestsellersVisible } = useScrollAnimation();
+  const { ref: concernsRef, isVisible: concernsVisible } = useScrollAnimation();
+
   const products = [
     {
       image: foamingFacewash,
@@ -129,12 +136,18 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Navigation />
       <Hero />
 
       {/* Products Section */}
-      <section className="py-20 bg-muted/30">
+      <section id="products" className="py-20 bg-muted/30 scroll-mt-20">
         <div className="container mx-auto px-6">
-          <header className="text-center mb-16">
+          <header
+            ref={productsRef}
+            className={`text-center mb-16 transition-all duration-700 ${
+              productsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
+          >
             <h2 className="text-4xl md:text-5xl font-serif mb-4">Our Products</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Thoughtfully crafted formulations that merge Ayurvedic botanicals with modern skincare science.
@@ -149,9 +162,14 @@ const Index = () => {
       </section>
 
       {/* Values Section */}
-      <section className="py-20">
+      <section id="values" className="py-20 scroll-mt-20">
         <div className="container mx-auto px-6">
-          <header className="text-center mb-16">
+          <header
+            ref={valuesRef}
+            className={`text-center mb-16 transition-all duration-700 ${
+              valuesVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
+          >
             <h2 className="text-4xl md:text-5xl font-serif mb-4">What We Believe In</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Our core values guide every decision, from ingredient sourcing to packaging design.
@@ -166,9 +184,14 @@ const Index = () => {
       </section>
 
       {/* Best Sellers Section */}
-      <section className="py-20 bg-secondary/20">
+      <section id="bestsellers" className="py-20 bg-secondary/20 scroll-mt-20">
         <div className="container mx-auto px-6">
-          <header className="text-center mb-16">
+          <header
+            ref={bestsellersRef}
+            className={`text-center mb-16 transition-all duration-700 ${
+              bestsellersVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
+          >
             <h2 className="text-4xl md:text-5xl font-serif mb-4">Best Sellers</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Our most loved products, trusted by thousands for visible results.
@@ -196,9 +219,14 @@ const Index = () => {
       </section>
 
       {/* Skin Concerns Section */}
-      <section className="py-20">
+      <section id="concerns" className="py-20 scroll-mt-20">
         <div className="container mx-auto px-6">
-          <header className="text-center mb-16">
+          <header
+            ref={concernsRef}
+            className={`text-center mb-16 transition-all duration-700 ${
+              concernsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
+          >
             <h2 className="text-4xl md:text-5xl font-serif mb-4">Common Skin Concerns We Address</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Find targeted solutions for your specific skincare needs and concerns.
