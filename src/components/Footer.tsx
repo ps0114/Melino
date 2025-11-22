@@ -6,7 +6,7 @@ export const Footer = () => {
       <div className="container mx-auto px-6 py-16">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="space-y-4">
-            <h3 className="text-2xl font-serif">Vedic Luxe</h3>
+            <h3 className="text-2xl font-serif tracking-wider">MELINO</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Where ancient wisdom meets modern science for timeless beauty.
             </p>
@@ -49,7 +49,7 @@ export const Footer = () => {
         </div>
         
         <div className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
-          <p>&copy; 2024 Vedic Luxe. All rights reserved. Crafted with care for your skin.</p>
+          <p>&copy; {new Date().getFullYear()} Melino. All rights reserved. Crafted with care for your skin.</p>
         </div>
       </div>
     </footer>

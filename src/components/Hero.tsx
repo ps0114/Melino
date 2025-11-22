@@ -1,24 +1,45 @@
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-product.jpg";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export const Hero = () => {
+  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation();
+  const { ref: textRef, isVisible: textVisible } = useScrollAnimation();
+  const { ref: buttonRef, isVisible: buttonVisible } = useScrollAnimation();
+
   return (
-    <section className="min-h-[90vh] flex items-center py-20">
+    <section className="min-h-screen flex items-center pt-32 pb-20">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif leading-tight">
-              Where Vedic Wisdom Meets Modern Science
-            </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">
-              Experience the perfect harmony of ancient Ayurvedic traditions and cutting-edge scientific innovation. 
-              Our luxurious formulations blend time-honored botanicals with clinically proven actives for radiant, 
-              healthy skin.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="bg-foreground text-background hover:bg-foreground/90 px-8">
-                Shop Now
-              </Button>
+            <div
+              ref={titleRef}
+              className={`transition-all duration-700 ${
+                titleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+            >
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif leading-tight">
+                Where Vedic Wisdom Meets Modern Science
+              </h1>
+            </div>
+            <div
+              ref={textRef}
+              className={`transition-all duration-700 delay-150 ${
+                textVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+            >
+              <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">
+                Experience the perfect harmony of ancient Ayurvedic traditions and cutting-edge scientific innovation. 
+                Our luxurious formulations blend time-honored botanicals with clinically proven actives for radiant, 
+                healthy skin.
+              </p>
+            </div>
+            <div
+              ref={buttonRef}
+              className={`flex flex-wrap gap-4 transition-all duration-700 delay-300 ${
+                buttonVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+            >
               <Button size="lg" variant="outline" className="px-8">
                 Explore Ingredients
               </Button>
